@@ -1,30 +1,69 @@
-# React + TypeScript + Vite
+# BIMM Assessment
+This project is a take home assessment for BIMM.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Setup Instructions
 
-Currently, two official plugins are available:
+1.  **Prerequisites:**
+    *   Ensure you have [Node.js](https://nodejs.org/) installed (which includes npm).
+    *   Ensure you have [pnpm](https://pnpm.io/installation) installed. You can install it via npm if you haven't already: `npm install -g pnpm`.
+    *   Clone the repository to your local machine.
+    *   Navigate into the project's root directory: `cd path/to/bimm-assessment`.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+2.  **Install Dependencies:**
+    *   In the root of the `bimm-assessment` directory, run the following command to install all necessary packages.
+    
+        ```bash
+        pnpm install
+        ```
 
-## Expanding the ESLint configuration
+## How to Run
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+* Open a terminal window/tab.
+* Navigate to the root of the project directory"
+  ```bash
+  cd /path/to/bimm-assessment
+  ```
+* Execute the command: To run the application
+  ```bash
+  pnpm run dev
+  ```
+* The vite development server will start. Observe the terminal output for the port number it is running on (e.g. http://localhost:3000)
 
-- Configure the top-level `parserOptions` property like this:
+## Project Overview
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: "latest",
-    sourceType: "module",
-    project: ["./tsconfig.json", "./tsconfig.node.json"],
-    tsconfigRootDir: __dirname,
-  },
-};
+### Directory Structure
+
+This directory structure is based on [bulletproof-react](https://github.com/alan2207/bulletproof-react/) repo. 
+Each feature folder contains code specific to the feature, keeping things neat and separate.
+
+I scoped this feature under `cars/` to remain consistent with the assessment’s API naming (e.g., `useCars`, `GetCars`). In a real-world project, I’d consider using a domain abstraction like `vehicles/` if we anticipated supporting multiple vehicle types in the future.
+
+Queries and mutations are organized as one file per operation within each feature’s `api/` folder. This pattern improves scalability, tree-shaking, and mockability as the app grows. In a larger codebase, I’d also separate `queries/` and `mutations/` folders under `api/`.
+
 ```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+src/
+│
+├── app/                    # Route definitions and global layouts
+│   └── index.tsx           # main application component    
+|   ├── provider.tsx        # application provider that wraps the entire application with different global providers - this might also differ based on meta framework used
+|   ├── router.tsx          # application router configuration
+|   ├── routes              # application routes / can also be pages
+├── features/               # Feature-based grouping
+│   └── cars/
+│       ├── components/
+│       ├── hooks/
+│       ├── api/
+│       ├── types/
+│   └── tasks/
+│       ├── components/
+│
+├── components/             # Reusable UI components
+│   └── ui/                 # Low-level UI (e.g., Button, Modal)
+│
+├── lib/                   # Utility functions, third-party wrappers
+├── hooks/                 # Shared hooks not tied to features
+├── types/                 # Global TypeScript types
+├── providers/             # React context providers
+├── assets/                # Images, icons, fonts
+└── test/                  # Testing utilities and mocks
+```

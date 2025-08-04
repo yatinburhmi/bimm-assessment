@@ -10,6 +10,15 @@ type CardGridProps = {
   children: React.ReactNode;
 };
 
+/**
+ * This is a shared layout component to render items in a reponsive grid.
+ * It accepts columns prop to determine how many items to display per row.
+ *
+ * Usage:
+ * - Wrap domain-specific card components inside <CardGrid> </CardGrid>
+ * - Define `columns` prop as {xs: 1, sm:1 , md:2, lg:3 } to control layout density.
+ */
+
 const CardGrid = ({
   spacing = 2,
   component = "div",

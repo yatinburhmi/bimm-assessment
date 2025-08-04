@@ -33,7 +33,12 @@ export const ResponsiveImage = ({
         alt={alt}
         loading={loading}
         className={className}
-        style={{ ...style }}
+        style={{
+          width: "100%",
+          display: "block",
+          objectFit: "cover",
+          ...style,
+        }}
         onError={(e) => {
           (e.currentTarget as HTMLImageElement).src = fallbackSrc;
         }}

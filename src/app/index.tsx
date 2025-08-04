@@ -1,12 +1,10 @@
-
-import { TaskList } from "@/features/tasks/components/TaskList";
 import { AppProvider } from "./provider";
+import { AppRouter } from "./router";
 
 export default function App() {
   return (
-   <AppProvider>
-      <TaskList />
+    <AppProvider>
+      <AppRouter />
     </AppProvider>
-
   );
 }

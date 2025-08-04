@@ -14,7 +14,7 @@ export const BaseCard = ({
   image,
   cardContent,
   actions,
-  maxWidth = 350,
+  maxWidth,
   sx,
   ...rest
 }: BaseCardProps) => {

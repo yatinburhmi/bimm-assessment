@@ -1,7 +1,7 @@
 import { BaseCard } from "@/components/ui/BaseCard/BaseCard";
 import { Car } from "../car.types";
 import { ResponsiveImage } from "@/components/ui/ResponsiveImage/ResponsiveImage";
-import { Chip as MUIChip, Typography } from "@mui/material";
+import { Box as MUIBox, Chip as MUIChip, Typography } from "@mui/material";
 
 type CarCardProps = {
   car: Car;
@@ -12,13 +12,20 @@ export const CarCard = ({ car }: CarCardProps) => {
   return (
     <BaseCard
       image={
-        <ResponsiveImage
-          mobile={mobile}
-          tablet={tablet}
-          desktop={desktop}
-          alt={`${make} ${model} ${year}`}
-          loading="lazy"
-        />
+        <MUIBox
+          sx={{
+            aspectRatio: "3 / 3",
+            overflow: "hidden",
+          }}
+        >
+          <ResponsiveImage
+            mobile={mobile}
+            tablet={tablet}
+            desktop={desktop}
+            alt={`${make} ${model} ${year}`}
+            loading="lazy"
+          />
+        </MUIBox>
       }
       cardContent={
         <>

@@ -22,14 +22,13 @@ export const ResponsiveImage = ({
   className,
   style,
 }: ResponsiveImageProps) => {
-  const getBestSrc = () => desktop || tablet || mobile || fallbackSrc;
   return (
     <picture>
       {desktop && <source media="(min-width:1024px)" srcSet={desktop} />}
       {tablet && <source media="(min-width:640px)" srcSet={tablet} />}
-      {mobile && <source media="(max-width: 639px" srcSet={mobile} />}
+      {mobile && <source media="(max-width: 639px)" srcSet={mobile} />}
       <img
-        src={getBestSrc()}
+        src={fallbackSrc}
         alt={alt}
         loading={loading}
         className={className}
@@ -37,6 +36,7 @@ export const ResponsiveImage = ({
           width: "100%",
           display: "block",
           objectFit: "cover",
+
           ...style,
         }}
         onError={(e) => {

@@ -1,4 +1,9 @@
-import { Box, CardContent, CardProps, Card as MUICard } from "@mui/material";
+import {
+  Box as MUIBox,
+  CardContent as MUICardContent,
+  CardProps,
+  Card as MUICard,
+} from "@mui/material";
 import type { SxProps, Theme } from "@mui/material/styles";
 import React from "react";
 
@@ -20,12 +25,12 @@ export const BaseCard = ({
 }: BaseCardProps) => {
   return (
     <MUICard sx={{ maxWidth, ...sx }} {...rest} elevation={5}>
-      {image && <Box>{image}</Box>}
-      {cardContent && <CardContent>{cardContent}</CardContent>}
+      {image && <MUIBox>{image}</MUIBox>}
+      {cardContent && <MUICardContent>{cardContent}</MUICardContent>}
       {actions && (
-        <Box px={2} pb={2}>
+        <MUIBox px={2} pb={2}>
           {actions}
-        </Box>
+        </MUIBox>
       )}
     </MUICard>
   );

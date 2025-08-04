@@ -5,6 +5,8 @@ type Breakpoints = "xs" | "sm" | "md" | "lg";
 
 type CardGridProps = {
   spacing?: number;
+  paddingX?: number;
+  paddingY?: number;
   component?: React.ElementType;
   columns?: Partial<Record<Breakpoints, number>>;
   children: React.ReactNode;
@@ -21,16 +23,19 @@ type CardGridProps = {
 
 const CardGrid = ({
   spacing = 2,
+  paddingX = 10,
+  paddingY = 0,
   component = "div",
-  columns = { xs: 1, sm: 1, md: 2, lg: 3 },
+  columns = { xs: 1, sm: 1, md: 2, lg: 4 },
   children,
 }: CardGridProps) => {
   return (
     <MUIGrid
       container
       component={component}
-      columns={columns}
       spacing={spacing}
+      px={paddingX}
+      py={paddingY}
     >
       {React.Children.map(children, (child) => (
         <MUIGrid

@@ -1,5 +1,4 @@
 import SearchBar from "@/components/ui/SearchBar/SearchBar";
-import React from "react";
 
 type CarSearchBarProps = {
   value: string;
@@ -12,6 +11,8 @@ const CarSearchBar = ({ value, onChange }: CarSearchBarProps) => {
       label="Search by Model"
       value={value}
       onChange={onChange}
+      fullWidth={true}
+      variant="outlined"
     ></SearchBar>
   );
 };

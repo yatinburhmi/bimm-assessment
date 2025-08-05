@@ -1,11 +1,12 @@
 import CarPage from "@/features/cars/pages/CarPage";
+import { Box as MUIBox, Typography as MUITypography } from "@mui/material";
 
 const Home = () => {
   return (
-    <main>
-      <h1>AudiRED</h1>
+    <MUIBox component={"main"}>
+      <MUITypography variant="h4">AudiRED</MUITypography>
       <CarPage />
-    </main>
+    </MUIBox>
   );
 };
 

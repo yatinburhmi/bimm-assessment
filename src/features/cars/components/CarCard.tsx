@@ -1,7 +1,11 @@
 import { BaseCard } from "@/components/ui/BaseCard/BaseCard";
 import { Car } from "../car.types";
 import { ResponsiveImage } from "@/components/ui/ResponsiveImage/ResponsiveImage";
-import { Box as MUIBox, Chip as MUIChip, Typography } from "@mui/material";
+import {
+  Box as MUIBox,
+  Chip as MUIChip,
+  Typography as MUITypography,
+} from "@mui/material";
 
 type CarCardProps = {
   car: Car;
@@ -29,7 +33,7 @@ export const CarCard = ({ car }: CarCardProps) => {
       }
       cardContent={
         <>
-          <Typography variant="h6">{`${year} ${model} ${make}`}</Typography>
+          <MUITypography variant="h6">{`${year} ${model} ${make}`}</MUITypography>
           <MUIChip label={color} />
         </>
       }

@@ -8,3 +8,5 @@ export type Car = {
   tablet: string;
   desktop: string;
 };
+
+export type SortValue = "year_asc" | "year_desc" | "model_asc" | "model_desc";

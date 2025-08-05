@@ -23,10 +23,10 @@ type CardGridProps = {
 
 const CardGrid = ({
   spacing = 2,
-  paddingX = 10,
+  paddingX = 0,
   paddingY = 0,
   component = "div",
-  columns = { xs: 1, sm: 1, md: 2, lg: 4 },
+  columns = { xs: 1, sm: 1, md: 2, lg: 3 },
   children,
 }: CardGridProps) => {
   return (

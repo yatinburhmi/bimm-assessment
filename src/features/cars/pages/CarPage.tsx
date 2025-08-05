@@ -1,75 +1,28 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import CarList from "../components/CarList";
 import CarToolbar from "../components/CarToolbar";
 import { Box as MUIBox } from "@mui/material";
-import { Car, SortValue } from "../car.types";
 import useCars from "../hooks/useCars";
+import useCarFilters from "../hooks/useCarFilters";
 
 const CarPage = () => {
-  const [search, setSearch] = useState<string>("");
-  const [sort, setSort] = useState<SortValue>("year_desc");
-  const [year, setYear] = useState<string | number>("");
   const [showAddCarDialog, setShowAddCarDialog] = useState<boolean>(false);
-
   const { cars, loading, error } = useCars();
-
-  const carCount: number = cars.length;
-  let filteredCarCount: number = 0;
-
-  const filteredCars = useMemo(() => {
-    let result = [...cars];
-
-    if (search.trim()) {
-      result = result.filter((car) =>
-        car.model.toLowerCase().includes(search.toLowerCase())
-      );
-    }
-
-    if (year) {
-      result = result.filter((car) => String(car.year) === String(year));
-    }
-
-    result.sort((a: Car, b: Car) => {
-      switch (sort) {
-        case "year_asc":
-          return a.year - b.year;
-        case "year_desc":
-          return b.year - a.year;
-        case "model_asc":
-          return a.model.localeCompare(b.model);
-        case "model_desc":
-          return b.model.localeCompare(a.model);
-        default:
-          return 0;
-      }
-    });
-    filteredCarCount = result.length;
-    return result;
-  }, [cars, search, year, sort]);
-
-  const activeFilterCount = useMemo(() => {
-    let count = 0;
-    if (search.trim()) count++;
-    if (year) count++;
-    if (sort !== "year_desc") count++;
-    return count;
-  }, [search, year, sort]);
-
-  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch(e.target.value);
-  };
-
-  const handleSortChange = (value: SortValue) => setSort(value);
-
-  const handleYearChange = (value: string | number) => setYear(value);
+  const {
+    search,
+    handleSearchChange,
+    sort,
+    handleSortChange,
+    year,
+    handleYearChange,
+    carCount,
+    filteredCarCount,
+    activeFilterCount,
+    handleResetFilter,
+    filteredCars,
+  } = useCarFilters(cars);
 
   const handleAddCarClick = () => setShowAddCarDialog(true);
-
-  const handleResetFilter = () => {
-    setSort("year_desc");
-    setSearch("");
-    setYear("");
-  };
 
   return (
     <MUIBox>

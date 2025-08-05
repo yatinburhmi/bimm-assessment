@@ -5,6 +5,7 @@ import CarSortDropdown from "./CarSortDropdown";
 import CarYearFilterDropdown from "./CarYearFilterDropdown";
 import { COLORS } from "@/constants/colors";
 import BaseButton from "@/components/ui/BaseButton/BaseButton";
+import CarToolbarHeader from "./CarToolbarHeader";
 
 type CarToolbarProps = {
   search: string;
@@ -17,6 +18,9 @@ type CarToolbarProps = {
   onYearChange: (value: string | number) => void;
   onResetFilter: () => void;
   onAddCarClick: () => void;
+  carCount: number;
+  filteredCarCount: number;
+  activeFilterCount: number;
 };
 
 const CarToolbar = ({
@@ -28,9 +32,17 @@ const CarToolbar = ({
   onYearChange,
   onResetFilter,
   onAddCarClick,
+  carCount,
+  filteredCarCount,
+  activeFilterCount,
 }: CarToolbarProps) => {
   return (
     <MUIBox p={3} border={2} borderRadius={5} borderColor={COLORS.border.muted}>
+      <CarToolbarHeader
+        carCount={carCount}
+        filteredCarCount={filteredCarCount}
+        activeFilterCount={activeFilterCount}
+      />
       <MUIGrid container spacing={2} justifyContent="space-between">
         <MUIGrid
           container
@@ -52,6 +64,7 @@ const CarToolbar = ({
               onClick={onResetFilter}
               sx={{ height: "100%" }}
               fullWidth={true}
+              disabled={activeFilterCount == 0}
             >
               Reset
             </BaseButton>

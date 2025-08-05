@@ -13,6 +13,9 @@ const CarPage = () => {
 
   const { cars, loading, error } = useCars();
 
+  const carCount: number = cars.length;
+  let filteredCarCount: number = 0;
+
   const filteredCars = useMemo(() => {
     let result = [...cars];
 
@@ -40,9 +43,17 @@ const CarPage = () => {
           return 0;
       }
     });
-
+    filteredCarCount = result.length;
     return result;
   }, [cars, search, year, sort]);
+
+  const activeFilterCount = useMemo(() => {
+    let count = 0;
+    if (search.trim()) count++;
+    if (year) count++;
+    if (sort !== "year_desc") count++;
+    return count;
+  }, [search, year, sort]);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
@@ -71,6 +82,9 @@ const CarPage = () => {
         onYearChange={handleYearChange}
         onAddCarClick={handleAddCarClick}
         onResetFilter={handleResetFilter}
+        carCount={carCount}
+        filteredCarCount={filteredCarCount}
+        activeFilterCount={activeFilterCount}
       />
       <CarList cars={filteredCars} loading={loading} error={error} />
     </MUIBox>

@@ -1,9 +1,16 @@
 import { useMemo, useState } from "react";
-import { Car, SortValue } from "../car.types";
 import { useQuery } from "@apollo/client";
+import { useDebounce } from "@/hooks/useDebounce";
 import { GET_CARS } from "../api/getCars";
 import { GET_FILTERED_CARS } from "../api/getFilteredCars";
-import { useDebounce } from "@/hooks/useDebounce";
+import { Car, SortValue } from "../car.types";
+
+/**
+ * useCarFilters handles server-side filtering, sorting, and counting of cars.
+ *
+ * Combines debounced search, sort, and year filters with Apollo queries,
+ * and exposes derived counts and handlers for use in UI components.
+ */
 
 const useCarFilters = () => {
   const [search, setSearch] = useState<string>("");

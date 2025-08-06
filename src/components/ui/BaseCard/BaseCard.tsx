@@ -24,7 +24,12 @@ export const BaseCard = ({
   ...rest
 }: BaseCardProps) => {
   return (
-    <MUICard sx={{ maxWidth, ...sx }} {...rest} elevation={5}>
+    <MUICard
+      data-testid="base-card"
+      sx={{ maxWidth, ...sx }}
+      {...rest}
+      elevation={5}
+    >
       {image && <MUIBox>{image}</MUIBox>}
       {cardContent && <MUICardContent>{cardContent}</MUICardContent>}
       {actions && (

@@ -30,7 +30,7 @@ const CarPage = () => {
     refetchFilteredCars();
   };
   return (
-    <MUIBox>
+    <MUIBox display="flex" flexDirection="column" minHeight="100vh">
       <CarToolbar
         search={search}
         onSearchChange={handleSearchChange}

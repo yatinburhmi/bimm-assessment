@@ -9,6 +9,13 @@ type AddCarDialogProps = {
   onCarAdded: () => void;
 };
 
+/**
+ * This component displays dialog to add a new car
+ *
+ * It handles:
+ * - Calling the api to add a new car
+ *
+ */
 const AddCarDialog = ({ open, onClose, onCarAdded }: AddCarDialogProps) => {
   const { addCar } = useCreateCar();
 

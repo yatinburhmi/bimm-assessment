@@ -1,9 +1,9 @@
 import React from "react";
 import { Box as MUIBox, Grid as MUIGrid } from "@mui/material";
+import BaseButton from "@/components/ui/BaseButton/BaseButton";
 import CarSearchBar from "./CarSearchBar";
 import CarSortDropdown from "./CarSortDropdown";
 import CarYearFilterDropdown from "./CarYearFilterDropdown";
-import BaseButton from "@/components/ui/BaseButton/BaseButton";
 import CarToolbarHeader from "./CarToolbarHeader";
 
 type CarToolbarProps = {
@@ -22,6 +22,20 @@ type CarToolbarProps = {
   activeFilterCount: number;
 };
 
+/**
+ *
+ * This is the control panel for CarList
+ *
+ * It handles:
+ * - Display of CarToolbarHeader, CarSearchBar, CarSortDropDown, CarYearDropdown, Reset and Add Car Button
+ * - CarToolbarHeader displays total and filtered car count along with number of active filters
+ * - CarSearchBar - Search Input for filtering cars by model
+ * - CarSortDropdown - Select dropdown to sort cars
+ * - CarYearDropdown - Select dropdown to filter cars by year
+ * - Reset Button - To reset all active filters
+ * - Add Car Button - Opens dialog to create a new car
+ *
+ */
 const CarToolbar = ({
   search,
   onSearchChange,

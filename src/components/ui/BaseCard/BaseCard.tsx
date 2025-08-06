@@ -5,7 +5,6 @@ import {
   Card as MUICard,
 } from "@mui/material";
 import type { SxProps, Theme } from "@mui/material/styles";
-import React from "react";
 
 type BaseCardProps = {
   image?: React.ReactNode;
@@ -15,6 +14,11 @@ type BaseCardProps = {
   sx?: SxProps<Theme>;
 } & Omit<CardProps, "children">;
 
+/**
+ * BaseCard is a reusable wrapper over MUI's Card with slots for image, content, and actions.
+ *
+ * Supports custom `maxWidth`, `sx`, and all standard CardProps.
+ */
 export const BaseCard = ({
   image,
   cardContent,

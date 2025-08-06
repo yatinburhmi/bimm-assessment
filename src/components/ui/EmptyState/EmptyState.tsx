@@ -8,6 +8,12 @@ type EmptyStateProps = {
   actions?: ReactNode;
 };
 
+/**
+ * EmptyState is a reusable UI placeholder for empty, error, or no-result states.
+ *
+ * Supports optional icon, title, description, and actions.
+ */
+
 const EmptyState = ({ title, description, icon, actions }: EmptyStateProps) => {
   return (
     <MUIBox

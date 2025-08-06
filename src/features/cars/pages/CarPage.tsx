@@ -6,6 +6,17 @@ import useCarFilters from "../hooks/useCarFilters";
 import CarToolbar from "../components/CarToolbar/CarToolbar";
 import AddCarDialog from "../components/AddCarDialog/AddCarDialog";
 
+/**
+ *
+ * This is the main container component for the car app.
+ *
+ * It handles:
+ * - Display CarToolbar for searching, sorting and filtering cars
+ * - Showing the list of filtered cars
+ * - Managing "Add Car" dialog visibility and refetching car data upon adding a new car
+ *
+ * State and filter logic are abstracted in `useCarFilters` hook
+ */
 const CarPage = () => {
   const [showAddCarDialog, setShowAddCarDialog] = useState<boolean>(false);
   const {

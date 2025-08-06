@@ -12,6 +12,12 @@ type ResponsiveImageProps = {
   className?: string;
 };
 
+/**
+ * ResponsiveImage renders an image that adapts to screen size using the <picture> element.
+ *
+ * Supports separate sources for mobile, tablet, and desktop, with a fallback image on error.
+ */
+
 export const ResponsiveImage = ({
   alt,
   mobile,

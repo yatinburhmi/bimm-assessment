@@ -1,5 +1,5 @@
-import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 import { useId } from "react";
+import { FormControl, InputLabel, Select, MenuItem } from "@mui/material";
 
 type Option = {
   label: string;
@@ -15,6 +15,13 @@ type SelectDropdownProps = {
   disabled?: boolean;
   onBlur?: () => void;
 };
+
+/**
+ * SelectDropdown is a reusable wrapper around MUI's Select component.
+ *
+ * Supports labeled options, fullWidth layout, and native value handling.
+ */
+
 const SelectDropdown = ({
   value,
   onChange,

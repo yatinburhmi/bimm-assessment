@@ -4,18 +4,18 @@ import { Car } from "../../car.types";
 import { ApolloError } from "@apollo/client";
 import "@testing-library/jest-dom";
 
+jest.mock("@/components/ui/CardGrid/CardGrid", () => ({
+  __esModule: true,
+  default: ({ children }: { children: React.ReactNode }) => (
+    <div data-testid="card-grid">{children}</div>
+  ),
+}));
+
 jest.mock("../CarCard/CarCard", () => ({
   CarCard: ({ car }: { car: Car }) => (
     <div data-testid="car-card">
       {car.make} {car.model}
     </div>
-  ),
-}));
-
-jest.mock("@/components/ui/CardGrid/CardGrid", () => ({
-  __esModule: true,
-  default: ({ children }: { children: React.ReactNode }) => (
-    <div data-testid="card-grid">{children}</div>
   ),
 }));
 

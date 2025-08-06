@@ -5,13 +5,12 @@ import { useCreateCar } from "../../hooks/useCreateCar";
 import "@testing-library/jest-dom";
 import userEvent from "@testing-library/user-event";
 
-// 🧪 Mock useCreateCar hook
+const mockAddCar = jest.fn();
+(useCreateCar as jest.Mock).mockReturnValue({ addCar: mockAddCar });
+
 jest.mock("../../hooks/useCreateCar", () => ({
   useCreateCar: jest.fn(),
 }));
-
-const mockAddCar = jest.fn();
-(useCreateCar as jest.Mock).mockReturnValue({ addCar: mockAddCar });
 
 const mockCarData: Omit<Car, "id"> = {
   make: "Audi",

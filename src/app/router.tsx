@@ -1,7 +1,6 @@
-import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { TaskList } from "@/features/tasks/components/TaskList";
-import Home from "./Home";
+import Home from "../pages/Home";
 
 export const AppRouter = () => {
   return (

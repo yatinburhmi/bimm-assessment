@@ -1,6 +1,6 @@
 import SelectDropdown from "@/components/ui/SelectDropdown/SelectDropdown";
-import { SortValue } from "../car.types";
-import { CAR_SORT_OPTIONS } from "../constants/sortOptions";
+import { SortValue } from "../../car.types";
+import { CAR_SORT_OPTIONS } from "../../constants/sortOptions";
 
 type CarSortDropdownProps = {
   value: SortValue;

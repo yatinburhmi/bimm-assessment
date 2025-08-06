@@ -1,7 +1,7 @@
 import BaseDialog from "@/components/ui/BaseDialog/BaseDialog";
-import NewCarForm from "./NewCarForm";
-import { Car } from "../car.types";
-import { useCreateCar } from "../hooks/useCreateCar";
+import { useCreateCar } from "../../hooks/useCreateCar";
+import NewCarForm from "../NewCarForm/NewCarForm";
+import { Car } from "../../car.types";
 
 type AddCarDialogProps = {
   open: boolean;

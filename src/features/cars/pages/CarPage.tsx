@@ -1,9 +1,10 @@
 import { useState } from "react";
-import CarList from "../components/CarList";
-import CarToolbar from "../components/CarToolbar";
+import CarList from "../components/CarList/CarList";
+
 import { Box as MUIBox } from "@mui/material";
 import useCarFilters from "../hooks/useCarFilters";
-import AddCarDialog from "../components/AddCarDialog";
+import CarToolbar from "../components/CarToolbar/CarToolbar";
+import AddCarDialog from "../components/AddCarDialog/AddCarDialog";
 
 const CarPage = () => {
   const [showAddCarDialog, setShowAddCarDialog] = useState<boolean>(false);

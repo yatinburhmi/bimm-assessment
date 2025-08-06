@@ -1,4 +1,5 @@
 import { graphql, HttpResponse } from "msw";
+import { v4 as uuidv4 } from "uuid";
 
 const carList = [
   {
@@ -45,5 +46,17 @@ const carList = [
 export const handlers = [
   graphql.query("GetCars", () => {
     return HttpResponse.json({ data: { cars: carList } });
+  }),
+  graphql.mutation("CreateCar", async ({ variables }) => {
+    const newCar = {
+      id: uuidv4(),
+      ...variables.input,
+    };
+    carList.push(newCar);
+    return HttpResponse.json({
+      data: {
+        createCar: newCar,
+      },
+    });
   }),
 ];

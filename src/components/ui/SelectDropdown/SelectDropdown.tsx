@@ -13,6 +13,7 @@ type SelectDropdownProps = {
   label?: string;
   fullWidth?: boolean;
   disabled?: boolean;
+  onBlur?: () => void;
 };
 const SelectDropdown = ({
   value,
@@ -21,6 +22,7 @@ const SelectDropdown = ({
   options,
   fullWidth,
   disabled,
+  onBlur,
 }: SelectDropdownProps) => {
   const id = useId();
   const labelId = `${id}-label`;
@@ -34,6 +36,7 @@ const SelectDropdown = ({
         value={value}
         label={label}
         onChange={(e) => onChange(e.target.value)}
+        onBlur={onBlur}
       >
         {options.map((option) => (
           <MenuItem key={option.value} value={option.value}>

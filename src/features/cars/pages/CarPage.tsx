@@ -4,6 +4,7 @@ import CarToolbar from "../components/CarToolbar";
 import { Box as MUIBox } from "@mui/material";
 import useCars from "../hooks/useCars";
 import useCarFilters from "../hooks/useCarFilters";
+import AddCarDialog from "../components/AddCarDialog";
 
 const CarPage = () => {
   const [showAddCarDialog, setShowAddCarDialog] = useState<boolean>(false);
@@ -40,6 +41,10 @@ const CarPage = () => {
         activeFilterCount={activeFilterCount}
       />
       <CarList cars={filteredCars} loading={loading} error={error} />
+      <AddCarDialog
+        open={showAddCarDialog}
+        onClose={() => setShowAddCarDialog(false)}
+      />
     </MUIBox>
   );
 };

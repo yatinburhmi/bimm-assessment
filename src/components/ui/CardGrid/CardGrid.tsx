@@ -1,5 +1,5 @@
 import { Grid as MUIGrid } from "@mui/material";
-import React from "react";
+import { Children } from "react";
 
 type Breakpoints = "xs" | "sm" | "md" | "lg";
 
@@ -13,7 +13,7 @@ type CardGridProps = {
 };
 
 /**
- * This is a shared layout component to render items in a reponsive grid.
+ * This is a shared layout component to render items in a responsive grid.
  * It accepts columns prop to determine how many items to display per row.
  *
  * Usage:
@@ -37,7 +37,7 @@ const CardGrid = ({
       px={paddingX}
       py={paddingY}
     >
-      {React.Children.map(children, (child) => (
+      {Children.map(children, (child) => (
         <MUIGrid
           key={(child as any)?.key || undefined}
           size={{

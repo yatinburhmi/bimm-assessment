@@ -1,11 +1,11 @@
 import { BaseCard } from "@/components/ui/BaseCard/BaseCard";
-import { Car } from "../car.types";
 import { ResponsiveImage } from "@/components/ui/ResponsiveImage/ResponsiveImage";
 import {
   Box as MUIBox,
   Chip as MUIChip,
   Typography as MUITypography,
 } from "@mui/material";
+import { Car } from "../../car.types";
 
 type CarCardProps = {
   car: Car;

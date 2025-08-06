@@ -23,7 +23,6 @@ type SearchBarProps = {
 const SearchBar = ({
   value,
   onChange,
-  onClear,
   label = "Search",
   placeholder,
   variant = "standard",
@@ -45,13 +44,7 @@ const SearchBar = ({
       InputProps={{
         endAdornment: (
           <InputAdornment position="end">
-            {value ? (
-              <IconButton onClick={onClear} aria-label="Clear search">
-                <ClearIcon />
-              </IconButton>
-            ) : (
-              <SearchIcon />
-            )}
+            <SearchIcon data-testid="SearchIcon" />
           </InputAdornment>
         ),
       }}

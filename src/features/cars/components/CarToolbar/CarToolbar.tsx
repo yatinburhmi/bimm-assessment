@@ -3,7 +3,6 @@ import { Box as MUIBox, Grid as MUIGrid } from "@mui/material";
 import CarSearchBar from "./CarSearchBar";
 import CarSortDropdown from "./CarSortDropdown";
 import CarYearFilterDropdown from "./CarYearFilterDropdown";
-import { COLORS } from "@/constants/colors";
 import BaseButton from "@/components/ui/BaseButton/BaseButton";
 import CarToolbarHeader from "./CarToolbarHeader";
 

@@ -51,19 +51,53 @@ src/
 ├── features/               # Feature-based grouping
 │   └── cars/
 │       ├── components/
+│       ├── pages/
 │       ├── hooks/
 │       ├── api/
 │       ├── types/
+│       ├── constants/
+│       ├── utils/
 │   └── tasks/
 │       ├── components/
 │
 ├── components/             # Reusable UI components
 │   └── ui/                 # Low-level UI (e.g., Button, Modal)
-│
-├── lib/                   # Utility functions, third-party wrappers
-├── hooks/                 # Shared hooks not tied to features
-├── types/                 # Global TypeScript types
-├── providers/             # React context providers
-├── assets/                # Images, icons, fonts
-└── test/                  # Testing utilities and mocks
+├── pages/                  # Components mapped to routes
+├── lib/                    # Utility functions, third-party wrappers
+├── hooks/                  # Shared hooks not tied to features
+├── types/                  # Global TypeScript types
+├── utils/                  # Global utility functions
+├── providers/              # React context providers
+├── assets/                 # Images, icons, fonts
+└── test/                   # Testing utilities and mocks
 ```
+
+### Tech Stack
+
+- **React** with **TypeScript** — modern, type-safe frontend framework
+- **Apollo Client** — GraphQL client for data fetching and caching
+- **Material UI (MUI)** — Component library for consistent styling
+- **Vite** — Fast dev server and bundler
+- **MSW (Mock Service Worker)** — For mocking GraphQL APIs in local dev
+- **Jest + React Testing Library** — For unit and integration tests
+
+## Features
+
+-  Car list display using GraphQL (GetCars query)
+-  Search, sort, and year filter
+-  Add new car with form
+-  Server-side filtering with debounced search
+-  Reusable shared components (Button, Card, Dialog, etc.)
+-  Unit tests with RTL + MSW
+
+## Running Tests
+
+To run the unit tests:
+
+```bash
+pnpm test
+```
+
+## Demo
+![Car List](./src/screenshots/car-list.png)
+![Car List Filter](./src/screenshots/car-list-filter-demo.png)

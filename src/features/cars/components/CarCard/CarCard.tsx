@@ -11,6 +11,10 @@ type CarCardProps = {
   car: Car;
 };
 
+/**
+ * This component is responsible to display a car in a Card using shared BaseCard component
+ */
+
 export const CarCard = ({ car }: CarCardProps) => {
   const { mobile, tablet, desktop, make, model, year, color } = car;
   return (

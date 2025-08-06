@@ -2,10 +2,8 @@ import {
   TextField as MUITextField,
   TextFieldVariants,
   InputAdornment,
-  IconButton,
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-import ClearIcon from "@mui/icons-material/Clear";
 import React from "react";
 
 type SearchBarProps = {
@@ -19,6 +17,12 @@ type SearchBarProps = {
   autoFocus?: boolean;
   disabled?: boolean;
 };
+
+/**
+ * SearchBar is a styled wrapper around MUI's TextField for search inputs.
+ *
+ * Includes a search icon and supports full TextField customization.
+ */
 
 const SearchBar = ({
   value,

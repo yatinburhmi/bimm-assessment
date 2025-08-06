@@ -10,6 +10,16 @@ type CarListProps = {
   loading: boolean;
   error: ApolloError | undefined;
 };
+
+/**
+ *
+ * This component renders list of cars in a responsive grid layout
+ *
+ * It handles:
+ * - Renders each car using the CarCard component in shared  CardGrid layout
+ * - Shows error and loading fallback via EmptyState shared component
+ * - Shows fallback via EmptyState if no cars are found
+ */
 const CarList = ({ cars, loading, error }: CarListProps) => {
   if (loading) return <p>Loading...</p>;
 

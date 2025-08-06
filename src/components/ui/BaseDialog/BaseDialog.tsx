@@ -18,6 +18,12 @@ type BaseDialogProps = {
   fullWidth?: boolean;
 };
 
+/**
+ * BaseDialog is a reusable wrapper over MUI's Dialog with title, close button, content, and optional actions.
+ *
+ * Supports responsive width, custom title, and full control over dialog content.
+ */
+
 const BaseDialog = ({
   open,
   title,

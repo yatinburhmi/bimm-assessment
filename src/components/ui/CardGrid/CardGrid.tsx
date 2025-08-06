@@ -1,5 +1,5 @@
 import { Grid as MUIGrid } from "@mui/material";
-import { Children } from "react";
+import { Children, isValidElement } from "react";
 
 type Breakpoints = "xs" | "sm" | "md" | "lg";
 
@@ -13,12 +13,9 @@ type CardGridProps = {
 };
 
 /**
- * This is a shared layout component to render items in a responsive grid.
- * It accepts columns prop to determine how many items to display per row.
+ * CardGrid is a shared layout component for rendering children in a responsive MUI Grid.
  *
- * Usage:
- * - Wrap domain-specific card components inside <CardGrid> </CardGrid>
- * - Define `columns` prop as {xs: 1, sm:1 , md:2, lg:3 } to control layout density.
+ * Supports configurable spacing, padding, and column count per breakpoint.
  */
 
 const CardGrid = ({
@@ -37,19 +34,21 @@ const CardGrid = ({
       px={paddingX}
       py={paddingY}
     >
-      {Children.map(children, (child) => (
-        <MUIGrid
-          key={(child as any)?.key || undefined}
-          size={{
-            xs: columns.xs ? 12 / columns.xs : undefined,
-            sm: columns.sm ? 12 / columns.sm : undefined,
-            md: columns.md ? 12 / columns.md : undefined,
-            lg: columns.lg ? 12 / columns.lg : undefined,
-          }}
-        >
-          {child}
-        </MUIGrid>
-      ))}
+      {Children.map(children, (child) =>
+        isValidElement(child) ? (
+          <MUIGrid
+            key={child.key}
+            size={{
+              xs: columns.xs ? 12 / columns.xs : undefined,
+              sm: columns.sm ? 12 / columns.sm : undefined,
+              md: columns.md ? 12 / columns.md : undefined,
+              lg: columns.lg ? 12 / columns.lg : undefined,
+            }}
+          >
+            {child}
+          </MUIGrid>
+        ) : null
+      )}
     </MUIGrid>
   );
 };

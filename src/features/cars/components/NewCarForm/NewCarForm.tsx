@@ -20,6 +20,13 @@ type NewCarFormProps = {
   onCancel: () => void;
 };
 
+/**
+ *  This component displays the form fields to add a new car
+ *
+ * It handles:
+ * - Displaying add a new car form to the user
+ * - Required field validation for car make, model and year
+ */
 const NewCarForm = ({ onSubmit, onCancel }: NewCarFormProps) => {
   const [formData, setFormData] = useState<Omit<Car, "id">>(initialCarFormData);
   const [touched, setTouched] = useState<Record<string, boolean>>({});

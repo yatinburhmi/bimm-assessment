@@ -2,8 +2,8 @@ import { useState } from "react";
 import { Grid as MUIGrid, TextField as MUITextField } from "@mui/material";
 import BaseButton from "@/components/ui/BaseButton/BaseButton";
 import SelectDropdown from "@/components/ui/SelectDropdown/SelectDropdown";
-import { Car } from "../car.types";
-import { carFormFields } from "../constants/carFormFields";
+import { Car } from "../../car.types";
+import { carFormFields } from "../../constants/carFormFields";
 
 const initialCarFormData: Omit<Car, "id"> = {
   make: "",

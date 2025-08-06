@@ -1,5 +1,5 @@
 import SelectDropdown from "@/components/ui/SelectDropdown/SelectDropdown";
-import { YEAR_OPTIONS } from "../constants/yearOptions";
+import { YEAR_OPTIONS } from "../../constants/yearOptions";
 
 type CarYearFilterDropdownProps = {
   value: string | number;

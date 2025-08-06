@@ -37,7 +37,13 @@ const CarToolbar = ({
   activeFilterCount,
 }: CarToolbarProps) => {
   return (
-    <MUIBox p={3} border={2} borderRadius={5} borderColor={COLORS.border.muted}>
+    <MUIBox
+      p={3}
+      border={2}
+      borderRadius={5}
+      borderColor={"lightgrey"}
+      bgcolor={"white"}
+    >
       <CarToolbarHeader
         carCount={carCount}
         filteredCarCount={filteredCarCount}

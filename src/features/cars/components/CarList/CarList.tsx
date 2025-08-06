@@ -1,7 +1,7 @@
 import { ApolloError } from "@apollo/client";
 import CardGrid from "@/components/ui/CardGrid/CardGrid";
-import { Car } from "../car.types";
-import { CarCard } from "./CarCard";
+import { Car } from "../../car.types";
+import { CarCard } from "../CarCard/CarCard";
 
 type CarListProps = {
   cars: Car[];

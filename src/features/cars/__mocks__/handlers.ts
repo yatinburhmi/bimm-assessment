@@ -59,4 +59,35 @@ export const handlers = [
       },
     });
   }),
+  graphql.query("GetFilterdCars", ({ variables }) => {
+    const { make, model, year, color } = variables;
+    let result = [...carList];
+    if (make) {
+      result = result.filter((car) =>
+        car.make.toLowerCase().includes(make.trim().toLowerCase())
+      );
+    }
+
+    if (model) {
+      result = result.filter((car) =>
+        car.model.toLowerCase().includes(model.trim().toLowerCase())
+      );
+    }
+
+    if (year) {
+      result = result.filter((car) => car.year === year);
+    }
+
+    if (color) {
+      result = result.filter((car) =>
+        car.color.toLowerCase().includes(color.trim().toLowerCase())
+      );
+    }
+
+    return HttpResponse.json({
+      data: {
+        cars: result,
+      },
+    });
+  }),
 ];

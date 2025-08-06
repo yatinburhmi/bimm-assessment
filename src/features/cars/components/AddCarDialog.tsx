@@ -6,15 +6,16 @@ import { useCreateCar } from "../hooks/useCreateCar";
 type AddCarDialogProps = {
   open: boolean;
   onClose: () => void;
+  onCarAdded: () => void;
 };
 
-const AddCarDialog = ({ open, onClose }: AddCarDialogProps) => {
+const AddCarDialog = ({ open, onClose, onCarAdded }: AddCarDialogProps) => {
   const { addCar } = useCreateCar();
 
   const handleAddCar = async (formData: Omit<Car, "id">) => {
-    const createdCar = await addCar(formData);
-    console.log("Created car:", createdCar);
+    await addCar(formData);
     onClose();
+    onCarAdded();
   };
 
   return (

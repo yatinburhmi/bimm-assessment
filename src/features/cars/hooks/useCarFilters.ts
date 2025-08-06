@@ -1,44 +1,63 @@
 import { useMemo, useState } from "react";
 import { Car, SortValue } from "../car.types";
+import { useQuery } from "@apollo/client";
+import { GET_CARS } from "../api/getCars";
+import { GET_FILTERED_CARS } from "../api/getFilteredCars";
+import { useDebounce } from "@/hooks/useDebounce";
 
-const useCarFilters = (cars: Car[]) => {
+const useCarFilters = () => {
   const [search, setSearch] = useState<string>("");
   const [sort, setSort] = useState<SortValue>("year_desc");
   const [year, setYear] = useState<string | number>("");
 
-  const carCount: number = cars.length;
+  const debouncedSearch = useDebounce(search, 500);
+
+  // Unfiltered query (for carCount)
+  const {
+    data: allCarsData,
+    loading: allCarsLoading,
+    error: allCarsError,
+  } = useQuery<{ cars: Car[] }>(GET_CARS);
+
+  // Filtered query (based on current filters)
+  const {
+    data: filteredCarsData,
+    loading: filteredCarsLoading,
+    error: filteredCarsError,
+    refetch: refetchFilteredCars,
+  } = useQuery<{
+    cars: Car[];
+  }>(GET_FILTERED_CARS, {
+    variables: {
+      model: debouncedSearch.trim() || undefined,
+      year: year || undefined,
+    },
+  });
 
   const filteredCars = useMemo(() => {
-    let result = [...cars];
+    const carsToSort =
+      search.trim() || year
+        ? filteredCarsData?.cars ?? []
+        : allCarsData?.cars ?? [];
 
-    if (search.trim()) {
-      result = result.filter((car) =>
-        car.model.toLowerCase().includes(search.toLowerCase())
-      );
+    const sorted = [...carsToSort];
+
+    switch (sort) {
+      case "year_asc":
+        return sorted.sort((a, b) => a.year - b.year);
+      case "year_desc":
+        return sorted.sort((a, b) => b.year - a.year);
+      case "model_asc":
+        return sorted.sort((a, b) => a.model.localeCompare(b.model));
+      case "model_desc":
+        return sorted.sort((a, b) => b.model.localeCompare(a.model));
+      default:
+        return sorted;
     }
+  }, [allCarsData?.cars, filteredCarsData?.cars, sort]);
 
-    if (year) {
-      result = result.filter((car) => String(car.year) === String(year));
-    }
-
-    result.sort((a: Car, b: Car) => {
-      switch (sort) {
-        case "year_asc":
-          return a.year - b.year;
-        case "year_desc":
-          return b.year - a.year;
-        case "model_asc":
-          return a.model.localeCompare(b.model);
-        case "model_desc":
-          return b.model.localeCompare(a.model);
-        default:
-          return 0;
-      }
-    });
-    return result;
-  }, [cars, search, year, sort]);
-
-  const filteredCarCount = useMemo(() => filteredCars.length, [filteredCars]);
+  const carCount = useMemo(() => allCarsData?.cars.length ?? 0, [allCarsData]);
+  const filteredCarCount = filteredCars.length;
 
   const activeFilterCount = useMemo(() => {
     let count = 0;
@@ -74,6 +93,9 @@ const useCarFilters = (cars: Car[]) => {
     activeFilterCount,
     handleResetFilter,
     filteredCars,
+    loading: allCarsLoading || filteredCarsLoading,
+    error: allCarsError || filteredCarsError,
+    refetchFilteredCars,
   };
 };
 

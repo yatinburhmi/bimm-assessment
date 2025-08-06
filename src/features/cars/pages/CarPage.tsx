@@ -2,13 +2,11 @@ import { useState } from "react";
 import CarList from "../components/CarList";
 import CarToolbar from "../components/CarToolbar";
 import { Box as MUIBox } from "@mui/material";
-import useCars from "../hooks/useCars";
 import useCarFilters from "../hooks/useCarFilters";
 import AddCarDialog from "../components/AddCarDialog";
 
 const CarPage = () => {
   const [showAddCarDialog, setShowAddCarDialog] = useState<boolean>(false);
-  const { cars, loading, error } = useCars();
   const {
     search,
     handleSearchChange,
@@ -21,10 +19,15 @@ const CarPage = () => {
     activeFilterCount,
     handleResetFilter,
     filteredCars,
-  } = useCarFilters(cars);
+    loading,
+    error,
+    refetchFilteredCars,
+  } = useCarFilters();
 
   const handleAddCarClick = () => setShowAddCarDialog(true);
-
+  const handleAddCar = () => {
+    refetchFilteredCars();
+  };
   return (
     <MUIBox>
       <CarToolbar
@@ -44,6 +47,7 @@ const CarPage = () => {
       <AddCarDialog
         open={showAddCarDialog}
         onClose={() => setShowAddCarDialog(false)}
+        onCarAdded={handleAddCar}
       />
     </MUIBox>
   );
